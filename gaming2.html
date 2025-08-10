@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Racing Gaming — Fast Track</title>
+  <meta name="description" content="Competitive online racing hub — games, events, leaderboard." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#07070a; --card:#0f1720; --muted:#9aa4b2; --accent:#ff3b30; --glass: rgba(255,255,255,0.04);
+      --accent-2:#ffb84d;
+      --radius:14px;
+      color-scheme: dark;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;background:linear-gradient(180deg,#020204 0%, #071021 60%);font-family:Inter,system-ui,Segoe UI,Roboto,'Helvetica Neue',Arial;color:#e6eef8}
+    a{color:inherit;text-decoration:none}
+    .container{max-width:1100px;margin:0 auto;padding:28px}
+
+    header{display:flex;align-items:center;justify-content:space-between;padding:8px 0}
+    .brand{display:flex;gap:12px;align-items:center}
+    .logo{width:54px;height:54px;border-radius:12px;display:grid;place-items:center;font-weight:800;background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#081018}
+    nav{display:flex;gap:18px;align-items:center}
+    nav a{color:var(--muted);font-weight:600}
+    .btn{background:var(--accent);color:#081018;padding:9px 14px;border-radius:10px;font-weight:700;display:inline-block}
+
+    /* hero */
+    .hero{display:grid;grid-template-columns:1fr 460px;gap:28px;align-items:center;margin-top:20px}
+    .hero-card{background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);border-radius:var(--radius);padding:26px;border:1px solid rgba(255,255,255,0.04);backdrop-filter: blur(6px)}
+    h1{font-size:38px;margin:0;line-height:1.02}
+    p.lead{color:var(--muted);margin-top:12px}
+    .stats{display:flex;gap:12px;margin-top:18px}
+    .stat{background:var(--glass);padding:10px 12px;border-radius:10px;text-align:center}
+    .stat strong{display:block;font-size:18px}
+
+    .hero-media{position:relative}
+    .hero-media img{width:100%;height:100%;object-fit:cover;border-radius:12px;border:1px solid rgba(255,255,255,0.04)}
+    .badge{position:absolute;left:18px;bottom:18px;background:linear-gradient(90deg,#0008, #0000);padding:8px 12px;border-radius:8px;border:1px solid rgba(255,255,255,0.05);backdrop-filter:blur(6px)}
+
+    /* grid */
+    .main-grid{display:grid;grid-template-columns:1fr 320px;gap:24px;margin-top:28px}
+    .game-list{display:grid;gap:14px}
+    .game{display:flex;background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);padding:10px;border-radius:12px;border:1px solid rgba(255,255,255,0.04);align-items:center;gap:12px}
+    .game img{width:140px;height:86px;object-fit:cover;border-radius:10px}
+    .game h3{margin:0;font-size:16px}
+    .game p{margin:6px 0 0;color:var(--muted);font-size:13px}
+    .game .tags{margin-top:8px;display:flex;gap:8px}
+    .tag{font-size:12px;padding:6px 8px;border-radius:8px;background:rgba(255,255,255,0.03);color:var(--muted)}
+    .actions{margin-left:auto;display:flex;gap:8px}
+    .play{background:var(--accent);padding:8px 12px;border-radius:10px;font-weight:700}
+
+    /* sidebar */
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);border-radius:12px;padding:14px;border:1px solid rgba(255,255,255,0.04)}
+    .leaderboard ol{list-style:none;padding:0;margin:12px 0;display:flex;flex-direction:column;gap:8px}
+    .player{display:flex;align-items:center;gap:12px;justify-content:space-between;padding:8px;border-radius:10px;background:rgba(255,255,255,0.02)}
+    .rank{width:38px;height:38px;border-radius:10px;display:grid;place-items:center;font-weight:800;background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#08202a}
+
+    /* benefits */
+    .benefits{display:flex;gap:12px;margin-top:20px}
+    .benefit{flex:1;padding:12px;border-radius:12px;background:rgba(255,255,255,0.02)}
+    .benefit h4{margin:0}
+    .footer{margin-top:36px;padding:18px;text-align:center;color:var(--muted);font-size:14px}
+
+    /* responsive */
+    @media (max-width:980px){
+      .hero{grid-template-columns:1fr;}
+      .main-grid{grid-template-columns:1fr}
+      nav{display:none}
+      header{gap:12px}
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="logo">RG</div>
+        <div>
+          <div style="font-weight:800">RACING<span style="color:var(--accent);">GAMING</span></div>
+          <div style="font-size:12px;color:var(--muted)">Fast. Competitive. Addictive.</div>
+        </div>
+      </div>
+
+      <nav>
+        <a href="#games">Games</a>
+        <a href="#leaderboard">Leaderboard</a>
+        <a href="#events">Events</a>
+        <a class="btn" href="#join">Join</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div class="hero-card">
+        <h1>Hit the Gas. Own the Podium.</h1>
+        <p class="lead">Compete live, tune your ride, and climb seasonal leaderboards. Cross-platform matches &amp; weekly tournaments.</p>
+
+        <div class="stats">
+          <div class="stat"><small style="color:var(--muted)">Active Players</small><strong>12.4k</strong></div>
+          <div class="stat"><small style="color:var(--muted)">Races Today</small><strong>1.2k</strong></div>
+          <div class="stat"><small style="color:var(--muted)">Tournaments</small><strong>24</strong></div>
+        </div>
+
+        <div style="margin-top:18px;display:flex;gap:10px;align-items:center">
+          <a class="btn" href="#games">Browse Games</a>
+          <a href="#events" style="color:var(--muted)">See Events</a>
+        </div>
+
+        <div class="benefits" style="margin-top:16px">
+          <div class="benefit"><h4>Low-lag Servers</h4><p style="color:var(--muted);margin-top:6px">Region selection for smooth multiplayer.</p></div>
+          <div class="benefit"><h4>Custom Tuning</h4><p style="color:var(--muted);margin-top:6px">Upgrade parts &amp; fine-tune your car.</p></div>
+          <div class="benefit"><h4>Tournaments</h4><p style="color:var(--muted);margin-top:6px">Weekly events with cash prizes.</p></div>
+        </div>
+      </div>
+
+      <div class="hero-media">
+        <img src="https://images.unsplash.com/photo-1525609004556-c46c7d6cf023?auto=format&fit=crop&w=1400&q=60" alt="racing hero">
+        <div class="badge">Featured Race • Midnight Neon Drift — Aug 23</div>
+      </div>
+    </section>
+
+    <main class="main-grid">
+      <section>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+          <h2 style="margin:0">Featured Races &amp; Games</h2>
+          <div style="color:var(--muted);font-weight:600">Season: Apex Sprint</div>
+        </div>
+
+        <div id="games" class="game-list">
+          <article class="game">
+            <img src="https://images.unsplash.com/photo-1517638851339-4aa32003f231?auto=format&fit=crop&w=800&q=60" alt="Neo Drift X">
+            <div>
+              <h3>Neo Drift X</h3>
+              <p class="muted">Arcade drift racing with neon nightscapes.</p>
+              <div class="tags"><span class="tag">Drift</span><span class="tag">Arcade</span></div>
+            </div>
+            <div class="actions">
+              <button class="play">Play</button>
+            </div>
+          </article>
+
+          <article class="game">
+            <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=800&q=60" alt="Hyper Circuit">
+            <div>
+              <h3>Hyper Circuit</h3>
+              <p class="muted">High-speed circuit racing with upgrades.</p>
+              <div class="tags"><span class="tag">Circuit</span><span class="tag">Multiplayer</span></div>
+            </div>
+            <div class="actions"><button class="play">Play</button></div>
+          </article>
+
+          <article class="game">
+            <img src="https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=800&q=60" alt="Desert Run">
+            <div>
+              <h3>Desert Run</h3>
+              <p class="muted">Off-road endurance through harsh dunes.</p>
+              <div class="tags"><span class="tag">Off-Road</span><span class="tag">Endurance</span></div>
+            </div>
+            <div class="actions"><button class="play">Play</button></div>
+          </article>
+        </div>
+
+        <section style="margin-top:18px" id="events" class="card">
+          <h3 style="margin:0">Upcoming Events</h3>
+          <div style="margin-top:10px;color:var(--muted)">
+            <div style="display:flex;gap:10px;align-items:center;margin-bottom:10px"><strong style="width:60px">Aug 23</strong><div><strong>Midnight Neon Drift (Qualifier)</strong><div style="font-size:12px;color:var(--muted)">Prize pool: $1,500 · Register by Aug 20</div></div></div>
+            <div style="display:flex;gap:10px;align-items:center"><strong style="width:60px">Sep 06</strong><div><strong>Hyper Circuit Cup</strong><div style="font-size:12px;color:var(--muted)">Team event · Top 16 invited</div></div></div>
+          </div>
+        </section>
+      </section>
+
+      <aside>
+        <div class="card leaderboard" id="leaderboard">
+          <h3 style="margin:0">Leaderboard</h3>
+          <p style="color:var(--muted);margin-top:6px">Top players — Season: Apex Sprint</p>
+
+          <ol id="lb" style="margin-top:12px"></ol>
+
+          <div style="margin-top:12px;text-align:center">
+            <button class="btn" id="viewFull">View Full Board</button>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:12px">
+          <h4 style="margin:0">Join Our Club</h4>
+          <p style="color:var(--muted);margin-top:8px">Create an account to save cars, join tournaments and chat with racers.</p>
+          <div style="display:flex;gap:8px;margin-top:10px">
+            <input id="name" placeholder="Your name" style="flex:1;padding:8px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit">
+            <button class="btn" id="join">Join</button>
+          </div>
+        </div>
+      </aside>
+    </main>
+
+    <div class="footer">© <span id="year"></span> RacingGaming — Built for speed. • <a href="#">Privacy</a> • <a href="#">Terms</a></div>
+  </div>
+
+  <script>
+    const lb = [
+      {rank:1,name:'ViperX',score:99840},
+      {rank:2,name:'NitroNed',score:95230},
+      {rank:3,name:'DriftQueen',score:91320},
+      {rank:4,name:'RapidRex',score:88210},
+      {rank:5,name:'TurboTara',score:83400}
+    ];
+
+    const lbNode = document.getElementById('lb');
+    lb.forEach(p=>{
+      const li = document.createElement('li');
+      li.className='player';
+      li.innerHTML = `<div style=\"display:flex;align-items:center;gap:12px\"><div class=\"rank\">${p.rank}</div><div><div style=\"font-weight:700\">${p.name}</div><div style=\"font-size:12px;color:var(--muted)\">Races won: ${Math.floor(p.score/1000)}</div></div></div><div style=\"font-weight:800\">${p.score.toLocaleString()}</div>`;
+      lbNode.appendChild(li);
+    });
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // simple join button interaction (mock)
+    document.getElementById('join').addEventListener('click',()=>{
+      const name = document.getElementById('name').value.trim();
+      if(!name){alert('Enter a display name to join');return}
+      alert('Welcome, '+name+'! (this is a mock join — wire up your backend to save users)');
+    });
+
+    document.querySelectorAll('.play').forEach(btn=>btn.addEventListener('click',()=>{
+      alert('Quick match queued — (demo). Replace with your game launch flow.');
+    }));
+
+    document.getElementById('viewFull').addEventListener('click',()=>{
+      alert('Open full scoreboard (not implemented). You can connect this to /api/leaderboard');
+    });
+  </script>
+</body>
+</html>
