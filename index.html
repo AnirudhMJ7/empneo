@@ -12,59 +12,251 @@
 
   <style>
     :root{
-      --bg:#07070a; --card:#0f1720; --muted:#9aa4b2; --accent:#ff3b30; --glass: rgba(255,255,255,0.04);
-      --accent-2:#ffb84d;
+      --bg:#0a0e1a; 
+      --card:#0f1428; 
+      --muted:#6b82a8; 
+      --accent:#00bfff; 
+      --glass: rgba(0,191,255,0.08);
+      --accent-2:#1e40af;
+      --text-primary:#e1ecff;
+      --text-secondary:#94a8cc;
+      --border:rgba(0,191,255,0.15);
       --radius:14px;
       color-scheme: dark;
     }
     *{box-sizing:border-box}
-    html,body{height:100%;margin:0;background:linear-gradient(180deg,#020204 0%, #071021 60%);font-family:Inter,system-ui,Segoe UI,Roboto,'Helvetica Neue',Arial;color:#e6eef8}
+    html,body{
+      height:100%;
+      margin:0;
+      background: 
+        url('https://images.unsplash.com/photo-1631295868785-2b369b6a8eef?auto=format&fit=crop&w=2000&q=80') center/cover no-repeat fixed,
+        radial-gradient(circle at 20% 50%, rgba(0,191,255,0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(30,64,175,0.2) 0%, transparent 50%),
+        radial-gradient(circle at 40% 80%, rgba(0,100,200,0.1) 0%, transparent 50%),
+        linear-gradient(135deg, #0a0e1a 0%, #1a1f35 40%, #0f1428 100%);
+      background-attachment: fixed;
+      font-family:Inter,system-ui,Segoe UI,Roboto,'Helvetica Neue',Arial;
+      color:var(--text-primary);
+      position: relative;
+      overflow-x: hidden;
+    }
+    
+    /* Animated grid background */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        linear-gradient(rgba(0,191,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,191,255,0.03) 1px, transparent 1px);
+      background-size: 50px 50px;
+      animation: gridMove 20s linear infinite;
+      pointer-events: none;
+      z-index: -1;
+    }
+    
+    @keyframes gridMove {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(50px, 50px); }
+    }
+    
+    /* Floating particles */
+    body::after {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        radial-gradient(2px 2px at 20px 30px, rgba(0,191,255,0.4), transparent),
+        radial-gradient(2px 2px at 40px 70px, rgba(30,64,175,0.3), transparent),
+        radial-gradient(1px 1px at 90px 40px, rgba(0,191,255,0.5), transparent),
+        radial-gradient(1px 1px at 130px 80px, rgba(0,100,200,0.4), transparent),
+        radial-gradient(2px 2px at 160px 30px, rgba(0,191,255,0.3), transparent);
+      background-repeat: repeat;
+      background-size: 200px 100px;
+      animation: sparkle 15s linear infinite;
+      pointer-events: none;
+      z-index: -1;
+    }
+    
+    @keyframes sparkle {
+      0%, 100% { transform: translateY(0) rotate(0deg); opacity: 1; }
+      50% { transform: translateY(-100px) rotate(180deg); opacity: 0.5; }
+    }
+    
     a{color:inherit;text-decoration:none}
     .container{max-width:1100px;margin:0 auto;padding:28px}
 
     header{display:flex;align-items:center;justify-content:space-between;padding:8px 0}
     .brand{display:flex;gap:12px;align-items:center}
-    .logo{width:54px;height:54px;border-radius:12px;display:grid;place-items:center;font-weight:800;background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#081018}
+    .logo{
+      width:54px;
+      height:54px;
+      border-radius:12px;
+      display:grid;
+      place-items:center;
+      font-weight:800;
+      background:linear-gradient(135deg,var(--accent),var(--accent-2));
+      color:#ffffff;
+      box-shadow: 0 0 20px rgba(0,191,255,0.3);
+    }
     nav{display:flex;gap:18px;align-items:center}
-    nav a{color:var(--muted);font-weight:600}
-    .btn{background:var(--accent);color:#081018;padding:9px 14px;border-radius:10px;font-weight:700;display:inline-block}
+    nav a{color:var(--text-secondary);font-weight:600;transition: all 0.3s ease;}
+    nav a:hover{color:var(--accent); text-shadow: 0 0 10px rgba(0,191,255,0.5);}
+    .btn{
+      background:linear-gradient(135deg,var(--accent),var(--accent-2));
+      color:#ffffff;
+      padding:9px 14px;
+      border-radius:10px;
+      font-weight:700;
+      display:inline-block;
+      box-shadow: 0 0 15px rgba(0,191,255,0.3);
+      transition: all 0.3s ease;
+    }
+    .btn:hover{
+      box-shadow: 0 0 25px rgba(0,191,255,0.5);
+      transform: translateY(-2px);
+    }
 
     /* hero */
     .hero{display:grid;grid-template-columns:1fr 460px;gap:28px;align-items:center;margin-top:20px}
-    .hero-card{background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);border-radius:var(--radius);padding:26px;border:1px solid rgba(255,255,255,0.04);backdrop-filter: blur(6px)}
-    h1{font-size:38px;margin:0;line-height:1.02}
-    p.lead{color:var(--muted);margin-top:12px}
+    .hero-card{
+      background:linear-gradient(135deg, rgba(0,191,255,0.08), rgba(30,64,175,0.05));
+      border-radius:var(--radius);
+      padding:26px;
+      border:1px solid var(--border);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    }
+    h1{font-size:38px;margin:0;line-height:1.02;background:linear-gradient(135deg,var(--text-primary),var(--accent));background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+    p.lead{color:var(--text-secondary);margin-top:12px}
     .stats{display:flex;gap:12px;margin-top:18px}
-    .stat{background:var(--glass);padding:10px 12px;border-radius:10px;text-align:center}
-    .stat strong{display:block;font-size:18px}
+    .stat{
+      background:var(--glass);
+      padding:10px 12px;
+      border-radius:10px;
+      text-align:center;
+      border:1px solid var(--border);
+      backdrop-filter: blur(5px);
+    }
+    .stat strong{display:block;font-size:18px;color:var(--accent);}
 
-    .hero-media{position:relative}
-    .hero-media img{width:100%;height:100%;object-fit:cover;border-radius:12px;border:1px solid rgba(255,255,255,0.04)}
-    .badge{position:absolute;left:18px;bottom:18px;background:linear-gradient(90deg,#0008, #0000);padding:8px 12px;border-radius:8px;border:1px solid rgba(255,255,255,0.05);backdrop-filter:blur(6px)}
+    .hero-media{position:relative;}
+    .hero-media img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      border-radius:12px;
+      border:1px solid var(--border);
+      box-shadow: 0 0 30px rgba(0,191,255,0.2);
+    }
+    .badge{
+      position:absolute;
+      left:18px;
+      bottom:18px;
+      background:linear-gradient(135deg,rgba(0,191,255,0.2), rgba(30,64,175,0.3));
+      padding:8px 12px;
+      border-radius:8px;
+      border:1px solid var(--border);
+      backdrop-filter:blur(10px);
+      color:var(--text-primary);
+    }
 
     /* grid */
     .main-grid{display:grid;grid-template-columns:1fr 320px;gap:24px;margin-top:28px}
     .game-list{display:grid;gap:14px}
-    .game{display:flex;background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);padding:10px;border-radius:12px;border:1px solid rgba(255,255,255,0.04);align-items:center;gap:12px}
+    .game{
+      display:flex;
+      background:linear-gradient(135deg, rgba(0,191,255,0.05), rgba(30,64,175,0.03));
+      padding:10px;
+      border-radius:12px;
+      border:1px solid var(--border);
+      align-items:center;
+      gap:12px;
+      backdrop-filter: blur(5px);
+      transition: all 0.3s ease;
+    }
+    .game:hover{
+      border-color:var(--accent);
+      box-shadow: 0 0 20px rgba(0,191,255,0.2);
+      transform: translateY(-2px);
+    }
     .game img{width:140px;height:86px;object-fit:cover;border-radius:10px}
-    .game h3{margin:0;font-size:16px}
-    .game p{margin:6px 0 0;color:var(--muted);font-size:13px}
+    .game h3{margin:0;font-size:16px;color:var(--text-primary);}
+    .game p{margin:6px 0 0;color:var(--text-secondary);font-size:13px}
     .game .tags{margin-top:8px;display:flex;gap:8px}
-    .tag{font-size:12px;padding:6px 8px;border-radius:8px;background:rgba(255,255,255,0.03);color:var(--muted)}
+    .tag{
+      font-size:12px;
+      padding:6px 8px;
+      border-radius:8px;
+      background:rgba(0,191,255,0.1);
+      color:var(--accent);
+      border:1px solid rgba(0,191,255,0.2);
+    }
     .actions{margin-left:auto;display:flex;gap:8px}
-    .play{background:var(--accent);padding:8px 12px;border-radius:10px;font-weight:700}
+    .play{
+      background:linear-gradient(135deg,var(--accent),var(--accent-2));
+      padding:8px 12px;
+      border-radius:10px;
+      font-weight:700;
+      color:#ffffff;
+      border:none;
+      cursor:pointer;
+      transition: all 0.3s ease;
+    }
+    .play:hover{
+      box-shadow: 0 0 15px rgba(0,191,255,0.4);
+      transform: scale(1.05);
+    }
 
     /* sidebar */
-    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);border-radius:12px;padding:14px;border:1px solid rgba(255,255,255,0.04)}
+    .card{
+      background:linear-gradient(135deg, rgba(0,191,255,0.05), rgba(30,64,175,0.03));
+      border-radius:12px;
+      padding:14px;
+      border:1px solid var(--border);
+      backdrop-filter: blur(5px);
+    }
     .leaderboard ol{list-style:none;padding:0;margin:12px 0;display:flex;flex-direction:column;gap:8px}
-    .player{display:flex;align-items:center;gap:12px;justify-content:space-between;padding:8px;border-radius:10px;background:rgba(255,255,255,0.02)}
-    .rank{width:38px;height:38px;border-radius:10px;display:grid;place-items:center;font-weight:800;background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#08202a}
+    .player{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      justify-content:space-between;
+      padding:8px;
+      border-radius:10px;
+      background:rgba(0,191,255,0.05);
+      border:1px solid rgba(0,191,255,0.1);
+    }
+    .rank{
+      width:38px;
+      height:38px;
+      border-radius:10px;
+      display:grid;
+      place-items:center;
+      font-weight:800;
+      background:linear-gradient(135deg,var(--accent),var(--accent-2));
+      color:#ffffff;
+      box-shadow: 0 0 10px rgba(0,191,255,0.3);
+    }
 
     /* benefits */
     .benefits{display:flex;gap:12px;margin-top:20px}
-    .benefit{flex:1;padding:12px;border-radius:12px;background:rgba(255,255,255,0.02)}
-    .benefit h4{margin:0}
-    .footer{margin-top:36px;padding:18px;text-align:center;color:var(--muted);font-size:14px}
+    .benefit{
+      flex:1;
+      padding:12px;
+      border-radius:12px;
+      background:rgba(0,191,255,0.05);
+      border:1px solid rgba(0,191,255,0.1);
+      backdrop-filter: blur(5px);
+    }
+    .benefit h4{margin:0;color:var(--accent);}
+    .footer{margin-top:36px;padding:18px;text-align:center;color:var(--text-secondary);font-size:14px}
 
     /* responsive */
     @media (max-width:980px){
@@ -72,6 +264,32 @@
       .main-grid{grid-template-columns:1fr}
       nav{display:none}
       header{gap:12px}
+    }
+
+    /* Custom input styling */
+    input {
+      flex:1;
+      padding:8px;
+      border-radius:10px;
+      border:1px solid var(--border);
+      background:rgba(0,191,255,0.05);
+      color:var(--text-primary);
+      backdrop-filter: blur(5px);
+    }
+    input::placeholder {
+      color:var(--text-secondary);
+    }
+    input:focus {
+      outline:none;
+      border-color:var(--accent);
+      box-shadow: 0 0 10px rgba(0,191,255,0.2);
+    }
+
+    button {
+      background:none;
+      border:none;
+      color:inherit;
+      cursor:pointer;
     }
   </style>
 </head>
@@ -82,7 +300,7 @@
         <div class="logo">RG</div>
         <div>
           <div style="font-weight:800">RACING<span style="color:var(--accent);">GAMING</span></div>
-          <div style="font-size:12px;color:var(--muted)">Fast. Competitive. Addictive.</div>
+          <div style="font-size:12px;color:var(--text-secondary)">Fast. Competitive. Addictive.</div>
         </div>
       </div>
 
@@ -100,25 +318,25 @@
         <p class="lead">Compete live, tune your ride, and climb seasonal leaderboards. Cross-platform matches &amp; weekly tournaments.</p>
 
         <div class="stats">
-          <div class="stat"><small style="color:var(--muted)">Active Players</small><strong>12.4k</strong></div>
-          <div class="stat"><small style="color:var(--muted)">Races Today</small><strong>1.2k</strong></div>
-          <div class="stat"><small style="color:var(--muted)">Tournaments</small><strong>24</strong></div>
+          <div class="stat"><small style="color:var(--text-secondary)">Active Players</small><strong>12.4k</strong></div>
+          <div class="stat"><small style="color:var(--text-secondary)">Races Today</small><strong>1.2k</strong></div>
+          <div class="stat"><small style="color:var(--text-secondary)">Tournaments</small><strong>24</strong></div>
         </div>
 
         <div style="margin-top:18px;display:flex;gap:10px;align-items:center">
           <a class="btn" href="#games">Browse Games</a>
-          <a href="#events" style="color:var(--muted)">See Events</a>
+          <a href="#events" style="color:var(--text-secondary)">See Events</a>
         </div>
 
         <div class="benefits" style="margin-top:16px">
-          <div class="benefit"><h4>Low-lag Servers</h4><p style="color:var(--muted);margin-top:6px">Region selection for smooth multiplayer.</p></div>
-          <div class="benefit"><h4>Custom Tuning</h4><p style="color:var(--muted);margin-top:6px">Upgrade parts &amp; fine-tune your car.</p></div>
-          <div class="benefit"><h4>Tournaments</h4><p style="color:var(--muted);margin-top:6px">Weekly events with cash prizes.</p></div>
+          <div class="benefit"><h4>Low-lag Servers</h4><p style="color:var(--text-secondary);margin-top:6px">Region selection for smooth multiplayer.</p></div>
+          <div class="benefit"><h4>Custom Tuning</h4><p style="color:var(--text-secondary);margin-top:6px">Upgrade parts &amp; fine-tune your car.</p></div>
+          <div class="benefit"><h4>Tournaments</h4><p style="color:var(--text-secondary);margin-top:6px">Weekly events with cash prizes.</p></div>
         </div>
       </div>
 
       <div class="hero-media">
-        <img src="https://images.unsplash.com/photo-1525609004556-c46c7d6cf023?auto=format&fit=crop&w=1400&q=60" alt="racing hero">
+        <img src="https://images.unsplash.com/photo-1544829099-b9a0c5303bea?auto=format&fit=crop&w=1400&q=80" alt="Futuristic Bugatti side view">
         <div class="badge">Featured Race • Midnight Neon Drift — Aug 23</div>
       </div>
     </section>
@@ -126,8 +344,8 @@
     <main class="main-grid">
       <section>
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
-          <h2 style="margin:0">Featured Races &amp; Games</h2>
-          <div style="color:var(--muted);font-weight:600">Season: Apex Sprint</div>
+          <h2 style="margin:0;color:var(--text-primary)">Featured Races &amp; Games</h2>
+          <div style="color:var(--text-secondary);font-weight:600">Season: Apex Sprint</div>
         </div>
 
         <div id="games" class="game-list">
@@ -165,18 +383,18 @@
         </div>
 
         <section style="margin-top:18px" id="events" class="card">
-          <h3 style="margin:0">Upcoming Events</h3>
-          <div style="margin-top:10px;color:var(--muted)">
-            <div style="display:flex;gap:10px;align-items:center;margin-bottom:10px"><strong style="width:60px">Aug 23</strong><div><strong>Midnight Neon Drift (Qualifier)</strong><div style="font-size:12px;color:var(--muted)">Prize pool: $1,500 · Register by Aug 20</div></div></div>
-            <div style="display:flex;gap:10px;align-items:center"><strong style="width:60px">Sep 06</strong><div><strong>Hyper Circuit Cup</strong><div style="font-size:12px;color:var(--muted)">Team event · Top 16 invited</div></div></div>
+          <h3 style="margin:0;color:var(--text-primary)">Upcoming Events</h3>
+          <div style="margin-top:10px;color:var(--text-secondary)">
+            <div style="display:flex;gap:10px;align-items:center;margin-bottom:10px"><strong style="width:60px;color:var(--accent)">Aug 23</strong><div><strong style="color:var(--text-primary)">Midnight Neon Drift (Qualifier)</strong><div style="font-size:12px;color:var(--text-secondary)">Prize pool: $1,500 · Register by Aug 20</div></div></div>
+            <div style="display:flex;gap:10px;align-items:center"><strong style="width:60px;color:var(--accent)">Sep 06</strong><div><strong style="color:var(--text-primary)">Hyper Circuit Cup</strong><div style="font-size:12px;color:var(--text-secondary)">Team event · Top 16 invited</div></div></div>
           </div>
         </section>
       </section>
 
       <aside>
         <div class="card leaderboard" id="leaderboard">
-          <h3 style="margin:0">Leaderboard</h3>
-          <p style="color:var(--muted);margin-top:6px">Top players — Season: Apex Sprint</p>
+          <h3 style="margin:0;color:var(--text-primary)">Leaderboard</h3>
+          <p style="color:var(--text-secondary);margin-top:6px">Top players — Season: Apex Sprint</p>
 
           <ol id="lb" style="margin-top:12px"></ol>
 
@@ -186,10 +404,10 @@
         </div>
 
         <div class="card" style="margin-top:12px">
-          <h4 style="margin:0">Join Our Club</h4>
-          <p style="color:var(--muted);margin-top:8px">Create an account to save cars, join tournaments and chat with racers.</p>
+          <h4 style="margin:0;color:var(--accent)">Join Our Club</h4>
+          <p style="color:var(--text-secondary);margin-top:8px">Create an account to save cars, join tournaments and chat with racers.</p>
           <div style="display:flex;gap:8px;margin-top:10px">
-            <input id="name" placeholder="Your name" style="flex:1;padding:8px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit">
+            <input id="name" placeholder="Your name">
             <button class="btn" id="join">Join</button>
           </div>
         </div>
@@ -212,7 +430,7 @@
     lb.forEach(p=>{
       const li = document.createElement('li');
       li.className='player';
-      li.innerHTML = `<div style=\"display:flex;align-items:center;gap:12px\"><div class=\"rank\">${p.rank}</div><div><div style=\"font-weight:700\">${p.name}</div><div style=\"font-size:12px;color:var(--muted)\">Races won: ${Math.floor(p.score/1000)}</div></div></div><div style=\"font-weight:800\">${p.score.toLocaleString()}</div>`;
+      li.innerHTML = `<div style=\"display:flex;align-items:center;gap:12px\"><div class=\"rank\">${p.rank}</div><div><div style=\"font-weight:700;color:var(--text-primary)\">${p.name}</div><div style=\"font-size:12px;color:var(--text-secondary)\">Races won: ${Math.floor(p.score/1000)}</div></div></div><div style=\"font-weight:800;color:var(--accent)\">${p.score.toLocaleString()}</div>`;
       lbNode.appendChild(li);
     });
 
