@@ -1,455 +1,370 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Racing Gaming — Fast Track</title>
-  <meta name="description" content="Competitive online racing hub — games, events, leaderboard." />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Viewfinder Photography</title>
+<meta name="description" content="Viewfinder Photography — photoshoots, wedding photography, portraits and more." />
+<style>
+  :root{
+    --bg:#0e0e10;
+    --panel:#121215;
+    --accent:#ffcc00;
+    --muted:#9a9a9a;
+    --glass: rgba(255,255,255,0.03);
+    --maxw:1100px;
+    --radius:14px;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0;
+    font-family: Inter, system-ui, Arial, sans-serif;
+    background: linear-gradient(180deg,#070709 0%, var(--bg) 100%);
+    color:#fff;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    line-height:1.45;
+  }
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  /* Top nav / hero */
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:28px;}
+  header{
+    display:flex; align-items:center; justify-content:space-between;
+    gap:20px;
+  }
+  .brand{
+    display:flex; gap:14px; align-items:center;
+  }
+  .viewfinder{
+    width:64px; height:64px; border-radius:12px;
+    background:
+      radial-gradient(circle at 35% 35%, rgba(255,255,255,0.06) 0 6px, transparent 7px),
+      conic-gradient(#0000,#0003);
+    border:2px solid rgba(255,255,255,0.04);
+    display:grid; place-items:center; color:var(--accent);
+    font-weight:700; font-size:12px;
+  }
+  nav a{
+    color:#ddd; text-decoration:none; margin:0 10px; font-weight:600;
+  }
+  nav a:hover{color:var(--accent)}
 
-  <style>
-    :root{
-      --bg:#0a0e1a; 
-      --card:#0f1428; 
-      --muted:#6b82a8; 
-      --accent:#00bfff; 
-      --glass: rgba(0,191,255,0.08);
-      --accent-2:#1e40af;
-      --text-primary:#e1ecff;
-      --text-secondary:#94a8cc;
-      --border:rgba(0,191,255,0.15);
-      --radius:14px;
-      color-scheme: dark;
-    }
-    *{box-sizing:border-box}
-    html,body{
-      height:100%;
-      margin:0;
-      background: 
-        url('https://images.unsplash.com/photo-1631295868785-2b369b6a8eef?auto=format&fit=crop&w=2000&q=80') center/cover no-repeat fixed,
-        radial-gradient(circle at 20% 50%, rgba(0,191,255,0.15) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(30,64,175,0.2) 0%, transparent 50%),
-        radial-gradient(circle at 40% 80%, rgba(0,100,200,0.1) 0%, transparent 50%),
-        linear-gradient(135deg, #0a0e1a 0%, #1a1f35 40%, #0f1428 100%);
-      background-attachment: fixed;
-      font-family:Inter,system-ui,Segoe UI,Roboto,'Helvetica Neue',Arial;
-      color:var(--text-primary);
-      position: relative;
-      overflow-x: hidden;
-    }
-    
-    /* Animated grid background */
-    body::before {
-      content: '';
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-image: 
-        linear-gradient(rgba(0,191,255,0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0,191,255,0.03) 1px, transparent 1px);
-      background-size: 50px 50px;
-      animation: gridMove 20s linear infinite;
-      pointer-events: none;
-      z-index: -1;
-    }
-    
-    @keyframes gridMove {
-      0% { transform: translate(0, 0); }
-      100% { transform: translate(50px, 50px); }
-    }
-    
-    /* Floating particles */
-    body::after {
-      content: '';
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: 
-        radial-gradient(2px 2px at 20px 30px, rgba(0,191,255,0.4), transparent),
-        radial-gradient(2px 2px at 40px 70px, rgba(30,64,175,0.3), transparent),
-        radial-gradient(1px 1px at 90px 40px, rgba(0,191,255,0.5), transparent),
-        radial-gradient(1px 1px at 130px 80px, rgba(0,100,200,0.4), transparent),
-        radial-gradient(2px 2px at 160px 30px, rgba(0,191,255,0.3), transparent);
-      background-repeat: repeat;
-      background-size: 200px 100px;
-      animation: sparkle 15s linear infinite;
-      pointer-events: none;
-      z-index: -1;
-    }
-    
-    @keyframes sparkle {
-      0%, 100% { transform: translateY(0) rotate(0deg); opacity: 1; }
-      50% { transform: translateY(-100px) rotate(180deg); opacity: 0.5; }
-    }
-    
-    a{color:inherit;text-decoration:none}
-    .container{max-width:1100px;margin:0 auto;padding:28px}
+  /* Hero */
+  .hero{
+    margin-top:18px;
+    display:grid;
+    grid-template-columns: 1fr 460px;
+    gap:28px;
+    align-items:center;
+  }
+  .hero-left{
+    padding:28px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    border-radius:var(--radius);
+    border:1px solid rgba(255,255,255,0.03);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+  }
+  .kicker{color:var(--muted); font-size:14px; letter-spacing:1px}
+  h1{margin:8px 0 12px; font-size:40px; line-height:1.03; color:var(--accent)}
+  p.lead{margin:0 0 18px; color:#e8e8e8}
+  .cta{
+    display:flex; gap:12px; flex-wrap:wrap;
+  }
+  .btn{
+    background:var(--accent); color:#111; padding:12px 18px; border-radius:10px;
+    text-decoration:none; font-weight:700; box-shadow: 0 6px 18px rgba(255,204,0,0.12);
+  }
+  .btn.ghost{
+    background:transparent; color:#fff; border:1px solid rgba(255,255,255,0.06)
+  }
 
-    header{display:flex;align-items:center;justify-content:space-between;padding:8px 0}
-    .brand{display:flex;gap:12px;align-items:center}
-    .logo{
-      width:54px;
-      height:54px;
-      border-radius:12px;
-      display:grid;
-      place-items:center;
-      font-weight:800;
-      background:linear-gradient(135deg,var(--accent),var(--accent-2));
-      color:#ffffff;
-      box-shadow: 0 0 20px rgba(0,191,255,0.3);
-    }
-    nav{display:flex;gap:18px;align-items:center}
-    nav a{color:var(--text-secondary);font-weight:600;transition: all 0.3s ease;}
-    nav a:hover{color:var(--accent); text-shadow: 0 0 10px rgba(0,191,255,0.5);}
-    .btn{
-      background:linear-gradient(135deg,var(--accent),var(--accent-2));
-      color:#ffffff;
-      padding:9px 14px;
-      border-radius:10px;
-      font-weight:700;
-      display:inline-block;
-      box-shadow: 0 0 15px rgba(0,191,255,0.3);
-      transition: all 0.3s ease;
-    }
-    .btn:hover{
-      box-shadow: 0 0 25px rgba(0,191,255,0.5);
-      transform: translateY(-2px);
-    }
+  /* Hero gallery preview */
+  .hero-right{
+    position:relative; border-radius:var(--radius); overflow:hidden;
+    min-height:300px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.6);
+  }
+  .hero-right img{ width:100%; height:100%; object-fit:cover; display:block; transform:scale(1.02); transition:transform .8s}
+  .hero-right:hover img{ transform:scale(1.06) }
+  .viewfinder-frame{
+    position:absolute; inset:14px; border-radius:10px; pointer-events:none;
+    box-shadow: inset 0 0 0 2px rgba(255,255,255,0.035);
+    border: 3px solid rgba(0,0,0,0.3);
+  }
 
-    /* hero */
-    .hero{display:grid;grid-template-columns:1fr 460px;gap:28px;align-items:center;margin-top:20px}
-    .hero-card{
-      background:linear-gradient(135deg, rgba(0,191,255,0.08), rgba(30,64,175,0.05));
-      border-radius:var(--radius);
-      padding:26px;
-      border:1px solid var(--border);
-      backdrop-filter: blur(10px);
-      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
-    }
-    h1{font-size:38px;margin:0;line-height:1.02;background:linear-gradient(135deg,var(--text-primary),var(--accent));background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
-    p.lead{color:var(--text-secondary);margin-top:12px}
-    .stats{display:flex;gap:12px;margin-top:18px}
-    .stat{
-      background:var(--glass);
-      padding:10px 12px;
-      border-radius:10px;
-      text-align:center;
-      border:1px solid var(--border);
-      backdrop-filter: blur(5px);
-    }
-    .stat strong{display:block;font-size:18px;color:var(--accent);}
+  /* Sections */
+  section{padding:48px 0}
+  h2.section-title{color:var(--accent); margin:0 0 12px}
+  .grid{
+    display:grid; gap:18px;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  }
+  .card{
+    background:var(--panel); border-radius:12px; overflow:hidden;
+    border:1px solid rgba(255,255,255,0.03);
+  }
+  .card .img{height:180px; overflow:hidden}
+  .card img{width:100%; height:100%; object-fit:cover; display:block; transition:transform .4s}
+  .card:hover img{transform:scale(1.06)}
+  .card .body{padding:16px}
+  .muted{color:var(--muted); font-size:14px}
 
-    .hero-media{position:relative;}
-    .hero-media img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      border-radius:12px;
-      border:1px solid var(--border);
-      box-shadow: 0 0 30px rgba(0,191,255,0.2);
-    }
-    .badge{
-      position:absolute;
-      left:18px;
-      bottom:18px;
-      background:linear-gradient(135deg,rgba(0,191,255,0.2), rgba(30,64,175,0.3));
-      padding:8px 12px;
-      border-radius:8px;
-      border:1px solid var(--border);
-      backdrop-filter:blur(10px);
-      color:var(--text-primary);
-    }
+  /* Gallery */
+  .gallery{
+    display:grid; grid-template-columns: repeat(auto-fit,minmax(160px,1fr)); gap:12px;
+  }
+  .thumb{position:relative; overflow:hidden; border-radius:8px; cursor:pointer; border:2px solid rgba(255,255,255,0.03)}
+  .thumb img{width:100%; height:170px; object-fit:cover; display:block; transition:transform .35s}
+  .thumb:hover img{transform:scale(1.05)}
 
-    /* grid */
-    .main-grid{display:grid;grid-template-columns:1fr 320px;gap:24px;margin-top:28px}
-    .game-list{display:grid;gap:14px}
-    .game{
-      display:flex;
-      background:linear-gradient(135deg, rgba(0,191,255,0.05), rgba(30,64,175,0.03));
-      padding:10px;
-      border-radius:12px;
-      border:1px solid var(--border);
-      align-items:center;
-      gap:12px;
-      backdrop-filter: blur(5px);
-      transition: all 0.3s ease;
-    }
-    .game:hover{
-      border-color:var(--accent);
-      box-shadow: 0 0 20px rgba(0,191,255,0.2);
-      transform: translateY(-2px);
-    }
-    .game img{width:140px;height:86px;object-fit:cover;border-radius:10px}
-    .game h3{margin:0;font-size:16px;color:var(--text-primary);}
-    .game p{margin:6px 0 0;color:var(--text-secondary);font-size:13px}
-    .game .tags{margin-top:8px;display:flex;gap:8px}
-    .tag{
-      font-size:12px;
-      padding:6px 8px;
-      border-radius:8px;
-      background:rgba(0,191,255,0.1);
-      color:var(--accent);
-      border:1px solid rgba(0,191,255,0.2);
-    }
-    .actions{margin-left:auto;display:flex;gap:8px}
-    .play{
-      background:linear-gradient(135deg,var(--accent),var(--accent-2));
-      padding:8px 12px;
-      border-radius:10px;
-      font-weight:700;
-      color:#ffffff;
-      border:none;
-      cursor:pointer;
-      transition: all 0.3s ease;
-    }
-    .play:hover{
-      box-shadow: 0 0 15px rgba(0,191,255,0.4);
-      transform: scale(1.05);
-    }
+  /* Lightbox */
+  .lightbox{
+    position:fixed; inset:0; display:none; align-items:center; justify-content:center;
+    background:rgba(0,0,0,0.8); z-index:80;
+  }
+  .lightbox.open{display:flex}
+  .lightbox img{max-width:92%; max-height:84%; border-radius:8px; box-shadow: 0 30px 80px rgba(0,0,0,0.8)}
+  .lb-close{
+    position:fixed; top:22px; right:24px; background:rgba(255,255,255,0.06);
+    color:#fff; border-radius:8px; padding:8px 10px; cursor:pointer; font-weight:700;
+  }
 
-    /* sidebar */
-    .card{
-      background:linear-gradient(135deg, rgba(0,191,255,0.05), rgba(30,64,175,0.03));
-      border-radius:12px;
-      padding:14px;
-      border:1px solid var(--border);
-      backdrop-filter: blur(5px);
-    }
-    .leaderboard ol{list-style:none;padding:0;margin:12px 0;display:flex;flex-direction:column;gap:8px}
-    .player{
-      display:flex;
-      align-items:center;
-      gap:12px;
-      justify-content:space-between;
-      padding:8px;
-      border-radius:10px;
-      background:rgba(0,191,255,0.05);
-      border:1px solid rgba(0,191,255,0.1);
-    }
-    .rank{
-      width:38px;
-      height:38px;
-      border-radius:10px;
-      display:grid;
-      place-items:center;
-      font-weight:800;
-      background:linear-gradient(135deg,var(--accent),var(--accent-2));
-      color:#ffffff;
-      box-shadow: 0 0 10px rgba(0,191,255,0.3);
-    }
+  /* Contact */
+  .contact-box{display:grid; grid-template-columns:1fr 360px; gap:18px; align-items:start}
+  form{background:var(--panel); padding:16px; border-radius:12px; border:1px solid rgba(255,255,255,0.03)}
+  label{display:block; font-size:14px; margin-bottom:6px}
+  input,textarea,select{
+    width:100%; padding:10px 12px; border-radius:8px; border:1px solid rgba(255,255,255,0.04);
+    background:transparent; color:#fff; font-size:14px; outline:none;
+  }
+  textarea{min-height:120px; resize:vertical}
+  .note{font-size:13px; color:var(--muted); margin-top:8px}
+  footer{padding:24px 0; color:var(--muted); text-align:center; font-size:14px}
 
-    /* benefits */
-    .benefits{display:flex;gap:12px;margin-top:20px}
-    .benefit{
-      flex:1;
-      padding:12px;
-      border-radius:12px;
-      background:rgba(0,191,255,0.05);
-      border:1px solid rgba(0,191,255,0.1);
-      backdrop-filter: blur(5px);
-    }
-    .benefit h4{margin:0;color:var(--accent);}
-    .footer{margin-top:36px;padding:18px;text-align:center;color:var(--text-secondary);font-size:14px}
-
-    /* responsive */
-    @media (max-width:980px){
-      .hero{grid-template-columns:1fr;}
-      .main-grid{grid-template-columns:1fr}
-      nav{display:none}
-      header{gap:12px}
-    }
-
-    /* Custom input styling */
-    input {
-      flex:1;
-      padding:8px;
-      border-radius:10px;
-      border:1px solid var(--border);
-      background:rgba(0,191,255,0.05);
-      color:var(--text-primary);
-      backdrop-filter: blur(5px);
-    }
-    input::placeholder {
-      color:var(--text-secondary);
-    }
-    input:focus {
-      outline:none;
-      border-color:var(--accent);
-      box-shadow: 0 0 10px rgba(0,191,255,0.2);
-    }
-
-    button {
-      background:none;
-      border:none;
-      color:inherit;
-      cursor:pointer;
-    }
-  </style>
+  /* Responsive */
+  @media (max-width:980px){
+    .hero{grid-template-columns:1fr; }
+    .contact-box{grid-template-columns:1fr}
+  }
+  @media (max-width:520px){
+    h1{font-size:28px}
+    .viewfinder{width:48px;height:48px}
+  }
+</style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <div class="brand">
-        <div class="logo">RG</div>
-        <div>
-          <div style="font-weight:800">RACING<span style="color:var(--accent);">GAMING</span></div>
-          <div style="font-size:12px;color:var(--text-secondary)">Fast. Competitive. Addictive.</div>
+
+<div class="wrap">
+  <header>
+    <div class="brand">
+      <div class="viewfinder" aria-hidden="true">VF</div>
+      <div>
+        <div style="font-weight:800">Viewfinder</div>
+        <div style="font-size:13px;color:var(--muted)">Photography Studio</div>
+      </div>
+    </div>
+
+    <nav aria-label="Main navigation">
+      <a href="#photoshoot">Photoshoot</a>
+      <a href="#wedding">Wedding</a>
+      <a href="#portfolio">Portfolio</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <main class="hero" role="main" aria-labelledby="main-heading">
+    <div class="hero-left" >
+      <div class="kicker">PROFESSIONAL • CREATIVE • TIMELESS</div>
+      <h1 id="main-heading">Viewfinder Photography</h1>
+      <p class="lead">We frame real emotion. Portraits, fashion shoots, and unforgettable wedding storytelling — shot with care and edited with style.</p>
+
+      <div class="cta">
+        <a class="btn" href="#contact">Book a shoot</a>
+        <a class="btn ghost" href="#portfolio">See portfolio</a>
+      </div>
+
+      <p class="note" style="margin-top:14px">Based in India • Travel for destination weddings • Custom packages available</p>
+    </div>
+
+    <div class="hero-right" aria-hidden="true">
+      <!-- Sample cover image (Unsplash). Replace with your hero image -->
+      <img src="https://images.unsplash.com/photo-1504198453319-5ce911bafcde?q=80&w=1400&auto=format&fit=crop" alt="Hero photo preview">
+      <div class="viewfinder-frame"></div>
+    </div>
+  </main>
+
+  <!-- Sections -->
+  <section id="photoshoot" aria-labelledby="photoshoot-title">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:18px">
+      <div>
+        <h2 class="section-title" id="photoshoot-title">Photoshoot</h2>
+        <p class="muted">Portraits, fashion, product & lifestyle — studio or on-location sessions tailored to your vibe.</p>
+      </div>
+    </div>
+
+    <div class="grid" style="margin-top:18px">
+      <div class="card">
+        <div class="img"><img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=1400&auto=format&fit=crop" alt="Portrait sample"></div>
+        <div class="body">
+          <div style="font-weight:700">Studio Portraits</div>
+          <div class="muted" style="margin-top:6px">Controlled light, dramatic looks, headshots and creative portraiture.</div>
         </div>
       </div>
 
-      <nav>
-        <a href="#games">Games</a>
-        <a href="#leaderboard">Leaderboard</a>
-        <a href="#events">Events</a>
-        <a class="btn" href="#join">Join</a>
-      </nav>
-    </header>
-
-    <section class="hero">
-      <div class="hero-card">
-        <h1>Hit the Gas. Own the Podium.</h1>
-        <p class="lead">Compete live, tune your ride, and climb seasonal leaderboards. Cross-platform matches &amp; weekly tournaments.</p>
-
-        <div class="stats">
-          <div class="stat"><small style="color:var(--text-secondary)">Active Players</small><strong>12.4k</strong></div>
-          <div class="stat"><small style="color:var(--text-secondary)">Races Today</small><strong>1.2k</strong></div>
-          <div class="stat"><small style="color:var(--text-secondary)">Tournaments</small><strong>24</strong></div>
-        </div>
-
-        <div style="margin-top:18px;display:flex;gap:10px;align-items:center">
-          <a class="btn" href="#games">Browse Games</a>
-          <a href="#events" style="color:var(--text-secondary)">See Events</a>
-        </div>
-
-        <div class="benefits" style="margin-top:16px">
-          <div class="benefit"><h4>Low-lag Servers</h4><p style="color:var(--text-secondary);margin-top:6px">Region selection for smooth multiplayer.</p></div>
-          <div class="benefit"><h4>Custom Tuning</h4><p style="color:var(--text-secondary);margin-top:6px">Upgrade parts &amp; fine-tune your car.</p></div>
-          <div class="benefit"><h4>Tournaments</h4><p style="color:var(--text-secondary);margin-top:6px">Weekly events with cash prizes.</p></div>
+      <div class="card">
+        <div class="img"><img src="https://images.unsplash.com/photo-1491553895911-0055eca6402d?q=80&w=1400&auto=format&fit=crop" alt="Fashion sample"></div>
+        <div class="body">
+          <div style="font-weight:700">Fashion & Editorial</div>
+          <div class="muted" style="margin-top:6px">Lookbooks, portfolios and creative direction for models & designers.</div>
         </div>
       </div>
 
-      <div class="hero-media">
-        <img src="https://images.unsplash.com/photo-1544829099-b9a0c5303bea?auto=format&fit=crop&w=1400&q=80" alt="Futuristic Bugatti side view">
-        <div class="badge">Featured Race • Midnight Neon Drift — Aug 23</div>
+      <div class="card">
+        <div class="img"><img src="https://images.unsplash.com/photo-1504198458649-3128b932f49f?q=80&w=1400&auto=format&fit=crop" alt="Lifestyle sample"></div>
+        <div class="body">
+          <div style="font-weight:700">Lifestyle</div>
+          <div class="muted" style="margin-top:6px">Candid moments that feel real — for families, influencers and brands.</div>
+        </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <main class="main-grid">
-      <section>
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
-          <h2 style="margin:0;color:var(--text-primary)">Featured Races &amp; Games</h2>
-          <div style="color:var(--text-secondary);font-weight:600">Season: Apex Sprint</div>
+  <section id="wedding" aria-labelledby="wedding-title">
+    <h2 class="section-title" id="wedding-title">Wedding Photography</h2>
+    <p class="muted">Documentary-style coverage with elegant portraits and cinematic edits. Packages start from intimate celebrations to full multi-day events.</p>
+
+    <div class="gallery" style="margin-top:18px">
+      <div class="thumb" data-full="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=2000&auto=format&fit=crop"><img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=800&auto=format&fit=crop" alt="Wedding 1"></div>
+      <div class="thumb" data-full="https://images.unsplash.com/photo-1505577058444-a3dab43f2d7d?q=80&w=2000&auto=format&fit=crop"><img src="https://images.unsplash.com/photo-1505577058444-a3dab43f2d7d?q=80&w=800&auto=format&fit=crop" alt="Wedding 2"></div>
+      <div class="thumb" data-full="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?q=80&w=2000&auto=format&fit=crop"><img src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?q=80&w=800&auto=format&fit=crop" alt="Wedding 3"></div>
+      <div class="thumb" data-full="https://images.unsplash.com/photo-1533779181886-5f85f8a1e672?q=80&w=2000&auto=format&fit=crop"><img src="https://images.unsplash.com/photo-1533779181886-5f85f8a1e672?q=80&w=800&auto=format&fit=crop" alt="Wedding 4"></div>
+    </div>
+  </section>
+
+  <section id="portfolio" aria-labelledby="portfolio-title">
+    <h2 class="section-title" id="portfolio-title">Portfolio Highlights</h2>
+    <p class="muted">A curated selection — click images to view larger.</p>
+
+    <div class="gallery" style="margin-top:18px">
+      <div class="thumb" data-full="https://images.unsplash.com/photo-1502685104226-ee32379fefbe?q=80&w=2000&auto=format&fit=crop"><img src="https://images.unsplash.com/photo-1502685104226-ee32379fefbe?q=80&w=800&auto=format&fit=crop" alt="Portfolio 1"></div>
+      <div class="thumb" data-full="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=2000&auto=format&fit=crop"><img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=800&auto=format&fit=crop" alt="Portfolio 2"></div>
+      <div class="thumb" data-full="https://images.unsplash.com/photo-1496307042754-b4aa456c4a2d?q=80&w=2000&auto=format&fit=crop"><img src="https://images.unsplash.com/photo-1496307042754-b4aa456c4a2d?q=80&w=800&auto=format&fit=crop" alt="Portfolio 3"></div>
+      <div class="thumb" data-full="https://images.unsplash.com/photo-1524253482453-3fed8d2fe12b?q=80&w=2000&auto=format&fit=crop"><img src="https://images.unsplash.com/photo-1524253482453-3fed8d2fe12b?q=80&w=800&auto=format&fit=crop" alt="Portfolio 4"></div>
+    </div>
+  </section>
+
+  <section id="contact" aria-labelledby="contact-title">
+    <h2 class="section-title" id="contact-title">Contact & Bookings</h2>
+    <p class="muted">Fill the form — we'll reply within 24-48 hours. For urgent enquiries call: +91 98765 43210</p>
+
+    <div class="contact-box" style="margin-top:18px">
+      <form id="contactForm" aria-label="Booking form">
+        <label for="name">Name</label>
+        <input id="name" name="name" placeholder="Your name" required>
+
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" placeholder="you@example.com" required>
+
+        <label for="service">Service</label>
+        <select id="service" name="service">
+          <option>Photoshoot (portrait/fashion)</option>
+          <option>Wedding</option>
+          <option>Commercial / Brand</option>
+          <option>Pre-wedding / Destination</option>
+        </select>
+
+        <label for="message">Message</label>
+        <textarea id="message" name="message" placeholder="Tell us dates, location and any special requests"></textarea>
+
+        <div style="margin-top:12px; display:flex; gap:10px">
+          <button type="submit" class="btn">Send enquiry</button>
+          <button type="button" class="btn ghost" onclick="location.href='#portfolio'">View portfolio</button>
         </div>
 
-        <div id="games" class="game-list">
-          <article class="game">
-            <img src="https://images.unsplash.com/photo-1517638851339-4aa32003f231?auto=format&fit=crop&w=800&q=60" alt="Neo Drift X">
-            <div>
-              <h3>Neo Drift X</h3>
-              <p class="muted">Arcade drift racing with neon nightscapes.</p>
-              <div class="tags"><span class="tag">Drift</span><span class="tag">Arcade</span></div>
-            </div>
-            <div class="actions">
-              <button class="play">Play</button>
-            </div>
-          </article>
+        <p class="note" style="margin-top:12px">This form is client-side only in this demo. To receive messages, connect it to your email service (Netlify Forms, Formspree, or backend).</p>
+      </form>
 
-          <article class="game">
-            <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=800&q=60" alt="Hyper Circuit">
-            <div>
-              <h3>Hyper Circuit</h3>
-              <p class="muted">High-speed circuit racing with upgrades.</p>
-              <div class="tags"><span class="tag">Circuit</span><span class="tag">Multiplayer</span></div>
-            </div>
-            <div class="actions"><button class="play">Play</button></div>
-          </article>
+      <aside style="padding:16px; background:var(--panel); border-radius:12px; border:1px solid rgba(255,255,255,0.03)">
+        <strong>Studio Info</strong>
+        <p class="muted" style="margin-top:8px">City: Mumbai, India<br>Email: hello@viewfinder.example<br>Phone: +91 98765 43210</p>
 
-          <article class="game">
-            <img src="https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=800&q=60" alt="Desert Run">
-            <div>
-              <h3>Desert Run</h3>
-              <p class="muted">Off-road endurance through harsh dunes.</p>
-              <div class="tags"><span class="tag">Off-Road</span><span class="tag">Endurance</span></div>
-            </div>
-            <div class="actions"><button class="play">Play</button></div>
-          </article>
-        </div>
-
-        <section style="margin-top:18px" id="events" class="card">
-          <h3 style="margin:0;color:var(--text-primary)">Upcoming Events</h3>
-          <div style="margin-top:10px;color:var(--text-secondary)">
-            <div style="display:flex;gap:10px;align-items:center;margin-bottom:10px"><strong style="width:60px;color:var(--accent)">Aug 23</strong><div><strong style="color:var(--text-primary)">Midnight Neon Drift (Qualifier)</strong><div style="font-size:12px;color:var(--text-secondary)">Prize pool: $1,500 · Register by Aug 20</div></div></div>
-            <div style="display:flex;gap:10px;align-items:center"><strong style="width:60px;color:var(--accent)">Sep 06</strong><div><strong style="color:var(--text-primary)">Hyper Circuit Cup</strong><div style="font-size:12px;color:var(--text-secondary)">Team event · Top 16 invited</div></div></div>
-          </div>
-        </section>
-      </section>
-
-      <aside>
-        <div class="card leaderboard" id="leaderboard">
-          <h3 style="margin:0;color:var(--text-primary)">Leaderboard</h3>
-          <p style="color:var(--text-secondary);margin-top:6px">Top players — Season: Apex Sprint</p>
-
-          <ol id="lb" style="margin-top:12px"></ol>
-
-          <div style="margin-top:12px;text-align:center">
-            <button class="btn" id="viewFull">View Full Board</button>
-          </div>
-        </div>
-
-        <div class="card" style="margin-top:12px">
-          <h4 style="margin:0;color:var(--accent)">Join Our Club</h4>
-          <p style="color:var(--text-secondary);margin-top:8px">Create an account to save cars, join tournaments and chat with racers.</p>
-          <div style="display:flex;gap:8px;margin-top:10px">
-            <input id="name" placeholder="Your name">
-            <button class="btn" id="join">Join</button>
-          </div>
+        <div style="margin-top:12px">
+          <strong>Why choose us</strong>
+          <ul class="muted" style="padding-left:18px; margin-top:8px; line-height:1.6">
+            <li>Full-day & half-day wedding coverage</li>
+            <li>Professional retouching & colour grading</li>
+            <li>Custom albums & prints</li>
+          </ul>
         </div>
       </aside>
-    </main>
+    </div>
+  </section>
 
-    <div class="footer">© <span id="year"></span> RacingGaming — Built for speed. • <a href="#">Privacy</a> • <a href="#">Terms</a></div>
-  </div>
+  <footer>
+    &copy; <span id="year"></span> Viewfinder Photography • Designed with care
+  </footer>
+</div>
 
-  <script>
-    const lb = [
-      {rank:1,name:'ViperX',score:99840},
-      {rank:2,name:'NitroNed',score:95230},
-      {rank:3,name:'DriftQueen',score:91320},
-      {rank:4,name:'RapidRex',score:88210},
-      {rank:5,name:'TurboTara',score:83400}
-    ];
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-hidden="true">
+  <button class="lb-close" id="lbClose" aria-label="Close (escape)">✕</button>
+  <img src="" alt="Expanded photo" id="lbImg">
+</div>
 
-    const lbNode = document.getElementById('lb');
-    lb.forEach(p=>{
-      const li = document.createElement('li');
-      li.className='player';
-      li.innerHTML = `<div style=\"display:flex;align-items:center;gap:12px\"><div class=\"rank\">${p.rank}</div><div><div style=\"font-weight:700;color:var(--text-primary)\">${p.name}</div><div style=\"font-size:12px;color:var(--text-secondary)\">Races won: ${Math.floor(p.score/1000)}</div></div></div><div style=\"font-weight:800;color:var(--accent)\">${p.score.toLocaleString()}</div>`;
-      lbNode.appendChild(li);
+<script>
+  // Fill current year
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Gallery -> Lightbox
+  const lightbox = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lbImg');
+  const thumbs = document.querySelectorAll('.thumb');
+
+  thumbs.forEach(t => {
+    t.addEventListener('click', () => {
+      const src = t.getAttribute('data-full') || (t.querySelector('img')?.src);
+      lbImg.src = src;
+      lightbox.classList.add('open');
+      lightbox.setAttribute('aria-hidden', 'false');
     });
+  });
 
-    document.getElementById('year').textContent = new Date().getFullYear();
+  document.getElementById('lbClose').addEventListener('click', closeLB);
+  lightbox.addEventListener('click', (e) => { if(e.target === lightbox) closeLB(); });
+  document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeLB(); });
+  function closeLB(){
+    lightbox.classList.remove('open');
+    lightbox.setAttribute('aria-hidden','true');
+    lbImg.src='';
+  }
 
-    // simple join button interaction (mock)
-    document.getElementById('join').addEventListener('click',()=>{
-      const name = document.getElementById('name').value.trim();
-      if(!name){alert('Enter a display name to join');return}
-      alert('Welcome, '+name+'! (this is a mock join — wire up your backend to save users)');
+  // Contact form: demo behaviour (client-side only)
+  const form = document.getElementById('contactForm');
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    // Basic validation
+    const name = form.name.value.trim();
+    const email = form.email.value.trim();
+    if(!name || !email){ alert('Please add name and email.'); return; }
+    // Show a friendly message — replace with actual submit logic on backend
+    alert('Thanks, ' + (name || '') + '! Your enquiry was recorded in this demo. Connect a backend or form service to receive emails.');
+    form.reset();
+  });
+
+  // Smooth scrolling for anchor links (native fallback)
+  document.querySelectorAll('a[href^="#"]').forEach(a=>{
+    a.addEventListener('click', e=>{
+      const href = a.getAttribute('href');
+      if(href.length>1){
+        e.preventDefault();
+        const el = document.querySelector(href);
+        if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
+      }
     });
+  });
+</script>
 
-    document.querySelectorAll('.play').forEach(btn=>btn.addEventListener('click',()=>{
-      alert('Quick match queued — (demo). Replace with your game launch flow.');
-    }));
-
-    document.getElementById('viewFull').addEventListener('click',()=>{
-      alert('Open full scoreboard (not implemented). You can connect this to /api/leaderboard');
-    });
-  </script>
 </body>
 </html>
